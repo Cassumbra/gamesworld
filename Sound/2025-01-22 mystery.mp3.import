@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://opjsp4c8omyv"
+path="res://.godot/imported/2025-01-22 mystery.mp3-daf045e4de5232cc17f9b6fa460d68f3.mp3str"
+
+[deps]
+
+source_file="res://Sound/2025-01-22 mystery.mp3"
+dest_files=["res://.godot/imported/2025-01-22 mystery.mp3-daf045e4de5232cc17f9b6fa460d68f3.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

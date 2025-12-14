@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx8q5gh5vqroe"]
+
+[ext_resource type="Script" path="res://Game 4/apple_base.gd" id="1_ioxaj"]
+[ext_resource type="Texture2D" uid="uid://cglr1cbhc4krh" path="res://2D/tileset.png" id="2_r75pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46qod"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv5xm"]
+atlas = ExtResource("2_r75pe")
+region = Rect2(80, 0, 8, 8)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_ioxaj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_46qod")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = SubResource("AtlasTexture_mv5xm")

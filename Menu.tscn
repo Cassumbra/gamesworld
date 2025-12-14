@@ -1,0 +1,97 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwtv803f6d5lg"]
+
+[ext_resource type="Script" path="res://menu.gd" id="1_osraw"]
+
+[node name="Menu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_osraw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+color = Color(0, 0, 0, 0.486275)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -77.5
+offset_right = 272.0
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Select game:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonGame1" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Princess Iris'
+Journey"
+
+[node name="ButtonGame2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2D TANK TUNNELER
+GOLD"
+
+[node name="ButtonGame3" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Princess Iris'
+Conundrum"
+
+[node name="ButtonGame4" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rose Lalonde in:
+The Garden of Eden"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonGame5" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "OH? YOU WANT
+THREE MORE GAMES?
+😀😳🥺😖💋👀"
+
+[node name="ButtonGame6" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "GET READY FOR
+MY 3 KINK GAMES
+IN 1 WEEK(?) CHALLENGE"
+
+[node name="ButtonGame7" type="Button" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+disabled = true
+text = "COMING THIS FEBRUARY
+💙💜💙💜
+:D"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonQuit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Exit Program"
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonGame1" to="." method="_on_button_game_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonGame2" to="." method="_on_button_game_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonGame3" to="." method="_on_button_game_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/ButtonGame4" to="." method="_on_button_game_4_pressed"]
+[connection signal="pressed" from="VBoxContainer/ButtonQuit" to="." method="_on_button_quit_pressed"]

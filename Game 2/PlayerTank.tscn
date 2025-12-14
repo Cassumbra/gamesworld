@@ -1,0 +1,142 @@
+[gd_scene load_steps=16 format=3 uid="uid://cq8cj7l240wrn"]
+
+[ext_resource type="Texture2D" uid="uid://fsincpbwqfg5" path="res://2D/tank.png" id="1_4gu45"]
+[ext_resource type="Script" path="res://Game 2/player_tank.gd" id="1_8grl2"]
+[ext_resource type="AudioStream" uid="uid://byh3i6kd6rako" path="res://Sound/step_ultralow.wav" id="3_xip4n"]
+[ext_resource type="AudioStream" uid="uid://c3hx8y1fjoqv7" path="res://Sound/step_high.wav" id="4_xx46a"]
+[ext_resource type="AudioStream" uid="uid://qmmh0bhwm4fs" path="res://Sound/hurt.wav" id="5_xbilq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tln1o"]
+size = Vector2(7.5, 7.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctcny"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gslwy"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oler4"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_451fw"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55t8k"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6omay"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ihw73"]
+atlas = ExtResource("1_4gu45")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6fyh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctcny")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gslwy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oler4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_451fw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55t8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6omay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ihw73")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ifwm"]
+size = Vector2(8, 8)
+
+[node name="PlayerTank" type="CharacterBody2D" node_paths=PackedStringArray("label_score", "label_held_value")]
+script = ExtResource("1_8grl2")
+label_score = NodePath("CanvasLayer/VBoxContainer/HBoxContainer2/Score")
+label_held_value = NodePath("CanvasLayer/VBoxContainer/HBoxContainer/HeldValue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tln1o")
+
+[node name="Camera" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.94, 0.94)
+sprite_frames = SubResource("SpriteFrames_t6fyh")
+animation = &"walking"
+
+[node name="SpeakerStep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_xip4n")
+volume_db = -3.962
+
+[node name="SpeakerLand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_xx46a")
+volume_db = -3.962
+
+[node name="SpeakerDie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xbilq")
+volume_db = -3.962
+
+[node name="TimerStep" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="TimerDig" type="Timer" parent="."]
+wait_time = 0.35
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Held Value:"
+
+[node name="HeldValue" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Score:"
+
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_0ifwm")

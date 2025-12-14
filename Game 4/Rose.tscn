@@ -1,0 +1,220 @@
+[gd_scene load_steps=24 format=3 uid="uid://ddnft113fsnfh"]
+
+[ext_resource type="Script" path="res://Game 4/rose.gd" id="1_xg41q"]
+[ext_resource type="PackedScene" uid="uid://cf0pgcnylyptx" path="res://Game 4/Reticle.tscn" id="2_g375a"]
+[ext_resource type="Texture2D" uid="uid://b1pgaar785im" path="res://2D/rose.png" id="2_mtrro"]
+[ext_resource type="Texture2D" uid="uid://dp348wkg33ely" path="res://2D/rose_walk.png" id="3_tgrrv"]
+[ext_resource type="AudioStream" uid="uid://byh3i6kd6rako" path="res://Sound/step_ultralow.wav" id="4_wosxn"]
+[ext_resource type="AudioStream" uid="uid://bn1gr0ru2uivj" path="res://Sound/2025-01-26 magic1.wav" id="6_4hb26"]
+[ext_resource type="AudioStream" uid="uid://cu85lx7itn4x1" path="res://Sound/2025-01-26 magic2.wav" id="7_885ld"]
+[ext_resource type="AudioStream" uid="uid://uhpf5ssqf6jm" path="res://Sound/2025-01-26 bite.wav" id="8_5y00e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etshp"]
+size = Vector2(8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u4wp0"]
+atlas = ExtResource("2_mtrro")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o41m8"]
+atlas = ExtResource("2_mtrro")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoffy"]
+atlas = ExtResource("2_mtrro")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44b8q"]
+atlas = ExtResource("2_mtrro")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ll5si"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7rpo"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_win84"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae5im"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgppy"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(32, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gm536"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(40, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkr0l"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(48, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1faep"]
+atlas = ExtResource("3_tgrrv")
+region = Rect2(56, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0twrw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u4wp0")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_o41m8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoffy")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_44b8q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ll5si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7rpo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_win84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae5im")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgppy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gm536")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkr0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1faep")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_auelm"]
+size = Vector2(8, 8)
+
+[node name="Rose" type="CharacterBody2D" node_paths=PackedStringArray("display_inebrobar", "display_score", "display_multiplier")]
+script = ExtResource("1_xg41q")
+display_inebrobar = NodePath("CanvasLayer/VBoxContainer/Inebrobar")
+display_score = NodePath("CanvasLayer/VBoxContainer/HBoxContainer/Score")
+display_multiplier = NodePath("CanvasLayer/VBoxContainer/HBoxContainer2/Multiplier")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_etshp")
+
+[node name="Reticle" parent="." instance=ExtResource("2_g375a")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_0twrw")
+frame_progress = 0.334277
+
+[node name="SpeakerStep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_wosxn")
+volume_db = -3.962
+
+[node name="SpeakerEnhance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_4hb26")
+
+[node name="SpeakerPreserve" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_885ld")
+
+[node name="SpeakerEat" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_5y00e")
+
+[node name="TimerStep" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_auelm")
+
+[node name="TimerInebriation" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "INEBROBAR
+"
+horizontal_alignment = 1
+
+[node name="Inebrobar" type="ProgressBar" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+show_percentage = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Score: "
+
+[node name="Score" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Multiplier: "
+
+[node name="Multiplier" type="Label" parent="CanvasLayer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "TIMESTOP TIMEPIECE"
+
+[node name="RemainingTime" type="ProgressBar" parent="CanvasLayer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+value = 100.0
+show_percentage = false
+
+[connection signal="area_entered" from="Area" to="." method="_on_area_entered"]
+[connection signal="timeout" from="TimerInebriation" to="." method="_on_timer_inebriation_timeout"]

@@ -1,0 +1,138 @@
+[gd_scene load_steps=16 format=3 uid="uid://75qbhur5qdx1"]
+
+[ext_resource type="Texture2D" uid="uid://cg0htq5bn1ocd" path="res://2D/princess_iris.png" id="1_s5v77"]
+[ext_resource type="Script" path="res://Game 3/player.gd" id="1_tqdjy"]
+[ext_resource type="AudioStream" uid="uid://byh3i6kd6rako" path="res://Sound/step_ultralow.wav" id="3_7anko"]
+[ext_resource type="AudioStream" uid="uid://c3hx8y1fjoqv7" path="res://Sound/step_high.wav" id="4_8yhaq"]
+[ext_resource type="AudioStream" uid="uid://qmmh0bhwm4fs" path="res://Sound/hurt.wav" id="5_k6n5j"]
+[ext_resource type="PackedScene" uid="uid://cu3i5u8n2rc6w" path="res://Game 3/particles_float.tscn" id="6_13sik"]
+[ext_resource type="AudioStream" uid="uid://c7apsywsa24pt" path="res://Sound/2025-01-21 float.wav" id="7_j7e2r"]
+[ext_resource type="AudioStream" uid="uid://opjsp4c8omyv" path="res://Sound/2025-01-22 mystery.mp3" id="8_jsmxd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ynq32"]
+size = Vector2(7.5, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdow6"]
+atlas = ExtResource("1_s5v77")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5yon"]
+atlas = ExtResource("1_s5v77")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e5h7"]
+atlas = ExtResource("1_s5v77")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pmwb"]
+atlas = ExtResource("1_s5v77")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_js0ub"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdow6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5yon")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8e5h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pmwb")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m85ay"]
+size = Vector2(8, 8)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_tqdjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ynq32")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+limit_left = -160
+limit_top = -608
+limit_right = 2360
+limit_bottom = 160
+
+[node name="ParticlesFloat" parent="." instance=ExtResource("6_13sik")]
+emitting = false
+
+[node name="ParticlesFloatInverse" parent="." instance=ExtResource("6_13sik")]
+emitting = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_js0ub")
+animation = &"walking"
+speed_scale = 0.75
+
+[node name="SpeakerStep" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7anko")
+volume_db = -6.0
+
+[node name="SpeakerLand" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_8yhaq")
+volume_db = -6.0
+
+[node name="SpeakerDie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_k6n5j")
+volume_db = -6.0
+
+[node name="SpeakerFloat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j7e2r")
+volume_db = -8.0
+
+[node name="SpeakerMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_jsmxd")
+parameters/looping = true
+
+[node name="TimerStep" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="TimerFloat" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="TimerJump" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="TimerJumpBuffer" type="Timer" parent="."]
+wait_time = 0.333
+one_shot = true
+
+[node name="Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_m85ay")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -11.5
+offset_right = 56.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "you're winner!"

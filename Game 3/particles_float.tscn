@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu3i5u8n2rc6w"]
+
+[sub_resource type="Gradient" id="Gradient_3fqhy"]
+colors = PackedColorArray(0, 0.35, 1, 1, 0.48, 0.575333, 1, 1)
+
+[node name="ParticlesFloat" type="CPUParticles2D"]
+amount = 100
+lifetime_randomness = 0.32
+emission_shape = 3
+emission_rect_extents = Vector2(4, 4)
+spread = 3.64
+gravity = Vector2(0, 0)
+initial_velocity_min = 20.2
+initial_velocity_max = 30.3
+color_initial_ramp = SubResource("Gradient_3fqhy")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf0pgcnylyptx"]
+
+[ext_resource type="Texture2D" uid="uid://bvkht7mtumya0" path="res://2D/alchemy_reticle.png" id="1_xy3j5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fu5x5"]
+size = Vector2(16, 16)
+
+[node name="Reticle" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fu5x5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_xy3j5")

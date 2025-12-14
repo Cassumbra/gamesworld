@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cu85lx7itn4x1"
+path="res://.godot/imported/2025-01-26 magic2.wav-ea12ef4687e0127b89492a1044dddf53.sample"
+
+[deps]
+
+source_file="res://Sound/2025-01-26 magic2.wav"
+dest_files=["res://.godot/imported/2025-01-26 magic2.wav-ea12ef4687e0127b89492a1044dddf53.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://7l0qvmni8ktv"]
+
+[ext_resource type="PackedScene" uid="uid://bx8q5gh5vqroe" path="res://Game 4/AppleBase.tscn" id="1_62h5m"]
+[ext_resource type="Texture2D" uid="uid://cglr1cbhc4krh" path="res://2D/tileset.png" id="2_jg7j1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oop0p"]
+atlas = ExtResource("2_jg7j1")
+region = Rect2(80, 24, 8, 8)
+
+[node name="AppleBase" instance=ExtResource("1_62h5m")]
+apple_type = 3
+apple_type_decays_into = 3
+apple_type_enhances_into = 3
+
+[node name="Sprite2D" parent="." index="1"]
+texture = SubResource("AtlasTexture_oop0p")
