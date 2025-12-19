@@ -50,6 +50,8 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
+	Global3d.player_pos = position
+	
 	if direction != Vector3(0, 0, 0) and is_on_floor() and step_timer.time_left <= 0:
 		step_timer.start(0.25)
 		step.play()

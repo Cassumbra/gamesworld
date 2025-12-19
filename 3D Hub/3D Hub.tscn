@@ -253,6 +253,7 @@ environment = SubResource("Environment_xdmud")
 camera_attributes = SubResource("CameraAttributesPractical_44ouy")
 
 [node name="UnifiedPlayer" parent="." instance=ExtResource("8_12kqo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8829279, -6.4992185)
 
 [node name="BillboardDeco" parent="." instance=ExtResource("8_gai0j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1210418, 1.0834923, -3.3922334)

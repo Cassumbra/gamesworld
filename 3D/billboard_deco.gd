@@ -25,6 +25,7 @@ func _process(delta):
 		rotation_degrees.x += 20 * delta
 		
 func billboard(flip = false):
+	
 	look_at(Global3d.player_pos, Vector3.UP)
 	if flip:
 		if rotation_degrees.y > -90 and rotation_degrees.y < 90:
