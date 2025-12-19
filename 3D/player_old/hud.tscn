@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://b2mva3yvnxywm"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="MessagePanel" type="NinePatchRect" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+patch_margin_left = 31
+patch_margin_top = 30
+patch_margin_right = 33
+patch_margin_bottom = 34
+
+[node name="Message" type="RichTextLabel" parent="MessagePanel"]
+layout_mode = 0
+anchor_left = 0.031553
+anchor_top = 0.0886385
+anchor_right = 0.96
+anchor_bottom = 0.881
+text = "WASD to move. Mouse to turn. You can click on some things to interact with them.
+
+Press [KEY_LASER] to fire your laser."
+
+[node name="FpsPanel" type="NinePatchRect" parent="."]
+layout_mode = 0
+anchor_left = 0.00677083
+anchor_top = 0.821476
+anchor_right = 0.0463333
+anchor_bottom = 0.885294
+region_rect = Rect2(0, 0, 63.0117, 62.2705)
+patch_margin_left = 29
+patch_margin_top = 33
+patch_margin_right = 31
+patch_margin_bottom = 32
+
+[node name="Fps" type="RichTextLabel" parent="FpsPanel"]
+layout_mode = 0
+anchor_left = 0.173032
+anchor_top = 0.227121
+anchor_right = 0.816675
+anchor_bottom = 0.796967
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+
+[node name="Crosshair" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Transition" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Transition"]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Click1" type="AudioStreamPlayer" parent="Transition"]
+volume_db = -10.0
+
+[node name="Timer" type="Timer" parent="Transition"]
+wait_time = 0.25
+one_shot = true
+
+[connection signal="timeout" from="Transition/Timer" to="." method="_on_Timer_timeout"]

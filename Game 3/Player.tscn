@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://75qbhur5qdx1"]
 
 [ext_resource type="Texture2D" uid="uid://cg0htq5bn1ocd" path="res://2D/princess_iris.png" id="1_s5v77"]
-[ext_resource type="Script" path="res://Game 3/player.gd" id="1_tqdjy"]
+[ext_resource type="Script" uid="uid://ctfjk5ebo43le" path="res://Game 3/player.gd" id="1_tqdjy"]
 [ext_resource type="AudioStream" uid="uid://byh3i6kd6rako" path="res://Sound/step_ultralow.wav" id="3_7anko"]
 [ext_resource type="AudioStream" uid="uid://c3hx8y1fjoqv7" path="res://Sound/step_high.wav" id="4_8yhaq"]
 [ext_resource type="AudioStream" uid="uid://qmmh0bhwm4fs" path="res://Sound/hurt.wav" id="5_k6n5j"]
@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://opjsp4c8omyv" path="res://Sound/2025-01-22 mystery.mp3" id="8_jsmxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ynq32"]
-size = Vector2(7.5, 8)
+size = Vector2(7.5, 7.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qdow6"]
 atlas = ExtResource("1_s5v77")
@@ -60,9 +60,7 @@ shape = SubResource("RectangleShape2D_ynq32")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 limit_left = -160
-limit_top = -608
 limit_right = 2360
-limit_bottom = 160
 
 [node name="ParticlesFloat" parent="." instance=ExtResource("6_13sik")]
 emitting = false

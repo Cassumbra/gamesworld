@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqaok7rmkltqj"]
+
+[ext_resource type="Script" uid="uid://dc5dfxtk86yma" path="res://3D/player_old/player.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://bccgr4ieosyfe" path="res://3D/player_old/body.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dxwa1fq1xdbgd" path="res://3D/player_old/dir_checks.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://b2mva3yvnxywm" path="res://3D/player_old/hud.tscn" id="4"]
+[ext_resource type="AudioStream" uid="uid://byh3i6kd6rako" path="res://Sound/step_ultralow.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://qmmh0bhwm4fs" path="res://Sound/hurt.wav" id="6"]
+
+[node name="Player" type="Node3D"]
+script = ExtResource("1")
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Step" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5")
+volume_db = -29.0
+
+[node name="Hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6")
+volume_db = -25.0
+pitch_scale = 0.5
+
+[node name="Land" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5")
+volume_db = -20.0
+pitch_scale = 1.5
+
+[node name="Body" parent="." instance=ExtResource("2")]
+
+[node name="DirChecks" parent="." instance=ExtResource("3")]
+TargetPath = NodePath("../Body")
+
+[node name="HUD" parent="." instance=ExtResource("4")]
+layout_mode = 3
+anchors_preset = 15
+script = null
+
+[node name="MessagePanel" parent="HUD" index="0"]
+layout_mode = 0
+texture = null
+
+[node name="Message" parent="HUD/MessagePanel" index="0"]
+layout_mode = 0
+
+[node name="FpsPanel" parent="HUD" index="1"]
+layout_mode = 0
+texture = null
+
+[node name="Fps" parent="HUD/FpsPanel" index="0"]
+layout_mode = 0
+
+[node name="CenterContainer" parent="HUD" index="2"]
+layout_mode = 0
+
+[node name="Crosshair" parent="HUD/CenterContainer" index="0"]
+layout_mode = 2
+texture = null
+expand_mode = 1
+
+[node name="Transition" parent="HUD" index="4"]
+anchors_preset = 0
+
+[node name="ColorRect" parent="HUD/Transition" index="0"]
+layout_mode = 0
+
+[node name="TextureRect" parent="HUD/Transition" index="1"]
+layout_mode = 0
+texture = null
+expand_mode = 1
+
+[node name="Click1" parent="HUD/Transition" index="2"]
+stream = null
+
+[connection signal="crouch" from="." to="Body" method="_on_Player_crouch"]
+[connection signal="direction_changed" from="." to="Body" method="_on_Player_direction_changed"]
+[connection signal="direction_changed" from="." to="DirChecks" method="_on_Player_direction_changed"]
+[connection signal="jump" from="." to="Body" method="_on_Player_jump"]
+[connection signal="look_object" from="." to="HUD" method="_on_Player_look_object"]
+[connection signal="scroll" from="." to="HUD" method="_on_Player_scroll"]
+[connection signal="tree_entered" from="." to="HUD" method="_on_Player_tree_entered"]
+[connection signal="uncrouch" from="." to="Body" method="_on_Player_uncrouch"]
+[connection signal="fallen" from="Body" to="." method="_on_Body_fallen"]
+[connection signal="landed" from="Body" to="." method="_on_Body_landed"]
+[connection signal="send_height" from="Body" to="DirChecks" method="_on_Body_send_height"]
+[connection signal="look_object" from="Body/Head" to="." method="_on_Head_look_object"]
+[connection signal="can_step" from="DirChecks" to="Body" method="_on_DirChecks_can_step"]
+
+[editable path="Body"]
+[editable path="DirChecks"]
+[editable path="HUD"]

@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bpe0qlbi738wp"]
+
+[ext_resource type="Texture2D" uid="uid://csst52rkxgq8r" path="res://textures/base/carpet-arcade-test1.png" id="1_2epu3"]
+[ext_resource type="Texture2D" uid="uid://both4gpc710a6" path="res://textures/base/carpet-red_normal.png" id="2_k1scn"]
+
+[resource]
+albedo_texture = ExtResource("1_2epu3")
+metallic_specular = 0.0
+normal_enabled = true
+normal_texture = ExtResource("2_k1scn")
+texture_filter = 2

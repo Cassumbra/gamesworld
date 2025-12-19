@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://8b55mjat5skv"]
+
+[ext_resource type="Texture2D" uid="uid://bq1vbfc0fjmnf" path="res://textures/base/brick1.png" id="1_q8fq7"]
+[ext_resource type="Texture2D" uid="uid://bhxqvgf63g4bn" path="res://textures/base/concrete_normal.png" id="2_edbv6"]
+
+[resource]
+albedo_texture = ExtResource("1_q8fq7")
+metallic_specular = 0.0
+emission = Color(0.92535293, 0.9253528, 0.9253529, 1)
+emission_energy_multiplier = 8.26
+bent_normal_texture = ExtResource("2_edbv6")
+texture_filter = 2

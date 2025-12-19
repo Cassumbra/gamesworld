@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxwa1fq1xdbgd"]
+
+[ext_resource type="Script" uid="uid://rchq7l8ajlbx" path="res://3D/player_old/dir_checks.gd" id="1"]
+
+[node name="DirChecks" type="Node3D"]
+script = ExtResource("1")
+
+[node name="HeadCheck" type="RayCast3D" parent="."]
+
+[node name="BodyCheck" type="RayCast3D" parent="."]
+
+[node name="FeetCheck" type="RayCast3D" parent="."]

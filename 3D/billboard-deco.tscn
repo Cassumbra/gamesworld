@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://csv5rvs4a0d0x"]
+
+[ext_resource type="Texture2D" uid="uid://wjbuyxo2oxmb" path="res://3D/yellow potted plant 1.2.png" id="1_dtvom"]
+[ext_resource type="Script" uid="uid://qyo3v4bw8smd" path="res://3D/billboard_deco.gd" id="2_76khw"]
+
+[node name="BillboardDeco" type="Sprite3D"]
+flip_h = true
+pixel_size = 0.025
+texture = ExtResource("1_dtvom")
+script = ExtResource("2_76khw")
+rotation_type = "Y-Billboard"
