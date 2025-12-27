@@ -2,9 +2,13 @@ extends CharacterBody3D
 
 const MOUSE_SENSITIVITY = 0.20
 
-#@onready var body_shape = $BodyShape
+@onready var body_shape = $BodyShape
 @onready var head = $Head
-#@onready var dir_checks = $DirChecks
+
+@onready var head_check = $HeadCheck
+@onready var body_check = $BodyCheck
+@onready var foot_check = $FootCheck
+
 #@onready var hud = $HUD
 
 @onready var step_timer = $StepTimer
@@ -16,6 +20,9 @@ const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# TODO: make this into some sort of function that we call in _ready() as well as whenever we crouch/uncrouch
+	head_check.position.y = body_shape.get_shape().height / 2.0
+	foot_check.position.y = -body_shape.get_shape().height / 2.0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,6 +32,7 @@ func _ready() -> void:
 func _input(event):
 	if event is InputEventMouseMotion and Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
 		rotate_y(deg_to_rad(-event.relative.x * MOUSE_SENSITIVITY))
+		print(rotation)
 		head.rotate_x(deg_to_rad(-event.relative.y * MOUSE_SENSITIVITY))
 		head.rotation.x = clamp(head.rotation.x, -PI/2, PI/2)
 
@@ -40,6 +48,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "up", "down")
+	var base_direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -47,6 +56,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+		
+	head_check.target_position = base_direction
+	body_check.target_position = base_direction 
+	foot_check.target_position = base_direction
+	
+	print(body_check.is_colliding())
 
 	move_and_slide()
 	

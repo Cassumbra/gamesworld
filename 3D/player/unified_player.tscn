@@ -13,8 +13,9 @@ script = ExtResource("1_7fqxr")
 
 [node name="Head" parent="." instance=ExtResource("2_lrix6")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="BodyShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CylinderShape3D_s8mi1")
+debug_color = Color(1, 1, 1, 1)
 
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 0.25
@@ -33,3 +34,9 @@ pitch_scale = 0.5
 stream = ExtResource("5_rja86")
 volume_db = -20.0
 pitch_scale = 1.5
+
+[node name="HeadCheck" type="RayCast3D" parent="."]
+
+[node name="BodyCheck" type="RayCast3D" parent="."]
+
+[node name="FootCheck" type="RayCast3D" parent="."]
