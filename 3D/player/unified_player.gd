@@ -20,9 +20,10 @@ const JUMP_VELOCITY = 4.5
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	head.position.y = (body_shape.get_shape().height / 2.0) * 0.75
 	# TODO: make this into some sort of function that we call in _ready() as well as whenever we crouch/uncrouch
 	head_check.position.y = body_shape.get_shape().height / 2.0
-	body_check.position.y = -body_shape.get_shape().height / 4.0
+	#body_check.position.y = -body_shape.get_shape().height / 4.0
 	foot_check.position.y = -body_shape.get_shape().height / 2.0
 
 
@@ -57,9 +58,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	head_check.target_position = base_direction
-	body_check.target_position = base_direction 
-	foot_check.target_position = base_direction
+	head_check.target_position = base_direction * (body_shape.get_shape().radius + 0.25)
+	body_check.target_position = base_direction * (body_shape.get_shape().radius + 0.25)
+	foot_check.target_position = base_direction * (body_shape.get_shape().radius + 0.25)
 	
 	#if (!head_check.is_colliding() and !body_check.is_colliding()
 	#and foot_check.is_colliding() and foot_check.get_collision_normal().y == 0.0):
